@@ -17,6 +17,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 
+<div class="row justify-content-sm-center">
+    <div class="col">
+        <a class="btn btn-outline-info btn-sm btn-block" href="/posts/addPost" style="border-width: 1px; border-color: #008080;">Add Post</a>
+    </div>
+</div>
+
 <c:forEach var="post" items="${posts}">
 <div class="row justify-content-sm-center">
     <div class="col">
@@ -77,11 +83,11 @@
 
         <div class="row justify-content-sm-center">
             <div class="col">
-                <a class="btn btn-outline-info btn-sm btn-block" href="" style="border-width: 1px; border-color: #008080;">Delete</a>
+                <a class="btn btn-outline-info btn-sm btn-block" href="/posts/delete/${post.post_id}" style="border-width: 1px; border-color: #008080;">Delete</a>
             </div>
 
             <div class="col">
-                <a class="btn btn-outline-info btn-sm btn-block" href="" style="border-width: 1px; border-color: #008080;">Change</a>
+                <a class="btn btn-outline-info btn-sm btn-block" href="/posts/updatePost/${post.post_id}" style="border-width: 1px; border-color: #008080;">Edit</a>
             </div>
             <div class="col">
                 <a class="btn btn-outline-info btn-sm btn-block" href="" style="border-width: 1px; border-color: #008080;">Add comment</a>

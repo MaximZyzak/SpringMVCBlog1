@@ -4,12 +4,11 @@ import com.zyzak.blog.dao.CommentDAO;
 import com.zyzak.blog.dao.PostDAO;
 import com.zyzak.blog.dao.UserDAO;
 import com.zyzak.blog.dao.User_postDAO;
+import com.zyzak.blog.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/posts")
@@ -42,8 +41,39 @@ public class PostController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model){
         model.addAttribute("post",postDAO.getById(id));
+        model.addAttribute("comments",commentDAO.comments());
         return "posts/post";
     }
+
+    @GetMapping("/addPost")
+    public String add(){
+        return "posts/createPost";
+    }
+
+    @PostMapping("/addPost")
+    public String addPost(@ModelAttribute("post") Post post){
+        postDAO.add(post);
+        return("redirect:/posts");
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deletePost(@PathVariable("id") int id){
+        postDAO.delete(id);
+        return("redirect:/posts");
+    }
+
+    @GetMapping("/updatePost/{id}")
+    public String update(@PathVariable("id")int id, Model model){
+        model.addAttribute("post",postDAO.getById(id));
+        return "posts/editPost";
+    }
+
+    @PostMapping("/updatePost")
+    public String updatePost(@ModelAttribute("post") Post post){
+        postDAO.update(post);
+        return("redirect:/posts");
+    }
+
 
 
 }

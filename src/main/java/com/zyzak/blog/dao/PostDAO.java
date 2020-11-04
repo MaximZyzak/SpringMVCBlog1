@@ -34,7 +34,7 @@ public class PostDAO {
     }
 
     public void add(Post post){
-        String sql = "INSERT INTO BLOGUSER.\"Posts\" (title_post,post_text) VALUES(?)";
+        String sql = "INSERT INTO BLOGUSER.\"Posts\" (title_post,post_text) VALUES(?,?)";
         jdbcTemplate.update(sql, post.getTitle_post(), post.getPost_text());
     }
 
