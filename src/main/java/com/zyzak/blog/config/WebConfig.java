@@ -43,7 +43,7 @@ public class WebConfig implements WebMvcConfigurer {
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-        dataSource.setUsername("BlogUser1");
+        dataSource.setUsername("BlogUser");
         dataSource.setPassword("m1234");
         dataSource.setDriverClassName(oracle.jdbc.driver.OracleDriver.class.getName());
         return dataSource;

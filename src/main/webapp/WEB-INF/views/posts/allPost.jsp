@@ -45,6 +45,7 @@
 
 
         <div class="row justify-content-sm-center">
+            <div class="row-centered"><span class="post_text"> ${post.title_post} </span></div>
             <div class="col-2">
                 <div class="row-centered"><span class="post_id"> <a href=/posts/${post.post_id}><p>${post.post_id}</p></a> </span></div>
             </div>
@@ -59,8 +60,13 @@
 
                 <c:forEach var="comment" items="${comments}">
 
-                    <c:if test="${post.comment_id == comment.comment_id}">
-                        <div class="row-centered"><span class="comment-text"> ${comment.comment_text} </span></div>
+                    <c:if test="${post.post_id == comment.post_id}">
+                        <div class="col-2">
+                                ${comment.user_id}
+                        </div>
+                        <div class="col">
+                            <div class="row-centered"><span class="comment-text"> ${comment.comment_text} </span></div>
+                        </div>
                     </c:if>
 
                 </c:forEach>

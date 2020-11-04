@@ -12,7 +12,8 @@
 </head>
 <body>
 <p>${post.post_id}</p>
+<p>${post.title_post}</p>
 <p>${post.post_text}</p>
-<p>${post.comment_id}</p>
+
 </body>
 </html>

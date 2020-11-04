@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -20,27 +19,27 @@ public class PostDAO {
     }
 
     public List<Post> posts(){
-        String sql = "SELECT * FROM BLOGUSER1.\"Posts\"";
+        String sql = "SELECT * FROM BLOGUSER.\"Posts\"";
         return jdbcTemplate.query(sql, new PostMapper());
     }
 
     public Post getById(int id){
-        String sql = "SELECT * FROM BLOGUSER1.\"Posts\" WHERE post_id = ?";
+        String sql = "SELECT * FROM BLOGUSER.\"Posts\" WHERE post_id = ?";
         return jdbcTemplate.queryForObject(sql, new PostMapper(), id);
     }
 
     public void update(Post post){
-        String sql = "UPDATE BLOGUSER1.\"Posts\" SET post_text=? WHERE post_id = ?";
-        jdbcTemplate.update(sql, post.getPost_text(), post.getPost_id());
+        String sql = "UPDATE BLOGUSER.\"Posts\" SET title_post =?, post_text=? WHERE post_id = ?";
+        jdbcTemplate.update(sql, post.getTitle_post(), post.getPost_text(), post.getPost_id());
     }
 
     public void add(Post post){
-        String sql = "INSERT INTO BLOGUSER1.\"Posts\" (post_text) VALUES(?)";
-        jdbcTemplate.update(sql, post.getPost_text());
+        String sql = "INSERT INTO BLOGUSER.\"Posts\" (title_post,post_text) VALUES(?)";
+        jdbcTemplate.update(sql, post.getTitle_post(), post.getPost_text());
     }
 
     public void delete(int id){
-        String sql = "DELETE FROM BLOGUSER1.\"Posts\" WHERE post_id = ?";
+        String sql = "DELETE FROM BLOGUSER.\"Posts\" WHERE post_id = ?";
         jdbcTemplate.update(sql, id);
     }
 }

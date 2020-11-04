@@ -19,12 +19,12 @@ public class User_postDAO {
     }
 
     public List<Userpost> user_post(){
-        String sql = "SELECT * FROM BLOGUSER1.\"User_post\"";
+        String sql = "SELECT * FROM BLOGUSER.\"User_post\"";
         return jdbcTemplate.query(sql, new User_postMapper());
     }
 
     public Userpost getById(int id){
-        String sql = "SELECT * FROM BLOGUSER1.\"User_post\" WHERE user_post_id = ?";
+        String sql = "SELECT * FROM BLOGUSER.\"User_post\" WHERE user_post_id = ?";
         return jdbcTemplate.queryForObject(sql, new User_postMapper(), id);
     }
 }

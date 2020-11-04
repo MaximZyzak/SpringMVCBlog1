@@ -19,12 +19,12 @@ public class CommentDAO {
     }
 
     public List<Comment> comments(){
-        String sql = "SELECT * FROM BLOGUSER1.\"Comments\"";
+        String sql = "SELECT * FROM BLOGUSER.\"Comments\"";
         return jdbcTemplate.query(sql, new CommentMapper());
     }
 
     public Comment getById(int id){
-        String sql = "SELECT * FROM BLOGUSER1.\"Comments\" WHERE comment_id = ?";
+        String sql = "SELECT * FROM BLOGUSER.\"Comments\" WHERE comment_id = ?";
         return jdbcTemplate.queryForObject(sql, new CommentMapper(), id);
     }
 }

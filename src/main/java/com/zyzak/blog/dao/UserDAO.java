@@ -21,12 +21,12 @@ public class UserDAO {
     }
 
     public List<User> users(){
-        String sql = "SELECT * FROM BLOGUSER1.\"Users\"";
+        String sql = "SELECT * FROM BLOGUSER.\"Users\"";
         return jdbcTemplate.query(sql, new UserMapper());
     }
 
     public User getById(int id){
-        String sql = "SELECT * FROM BLOGUSER1.\"Users\" WHERE user_id = ?";
+        String sql = "SELECT * FROM BLOGUSER.\"Users\" WHERE user_id = ?";
         return jdbcTemplate.queryForObject(sql, new UserMapper(), id);
     }
 }

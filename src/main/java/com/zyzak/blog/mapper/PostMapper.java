@@ -11,8 +11,8 @@ public class PostMapper  implements RowMapper<Post> {
     public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
         Post post = new Post();
         post.setPost_id(rs.getInt("post_id"));
+        post.setTitle_post(rs.getString("title_post"));
         post.setPost_text(rs.getString("post_text"));
-        post.setComment_id(rs.getInt("comment_id"));
         return post;
     }
 }
