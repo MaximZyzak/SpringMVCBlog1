@@ -13,13 +13,13 @@
     <br>
     <div class="row justify-content-sm-center">
         <div class="col">
-            <a class="btn btn-outline-info btn-sm btn-block" href="/posts/addPost" style="border-width: 1px; border-color: #008080;">Add Post</a>
+            <a class="btn btn-outline-info btn-sm btn-block" href="/posts/addPost">Add Post</a>
         </div>
     </div>
     <br>
 
     <c:forEach var="post" items="${posts}">
-        <div class="row justify-content-sm-center bg-dark text-white rounded" style="border-width: 4px; border-color: #008080;   ">
+        <div class="row justify-content-sm-center bg-dark text-white rounded-lg">
             <div class="col">
 
                 <div class="row justify-content-sm-center">
@@ -49,11 +49,11 @@
                             <br>
                             <div class="row justify-content-sm-center">
                             <div class="col">
-                                <a class="btn btn-outline-info btn-sm btn-block" href="/posts/delete/${post.post_id}" style="border-width: 1px; border-color: #008080;">Delete</a>
+                                <a class="btn btn-outline-info btn-sm btn-block" href="/posts/delete/${post.post_id}">Delete</a>
                             </div>
 
                             <div class="col">
-                                <a class="btn btn-outline-info btn-sm btn-block" href="/posts/updatePost/${post.post_id}" style="border-width: 1px; border-color: #008080;">Edit</a>
+                                <a class="btn btn-outline-info btn-sm btn-block" href="/posts/updatePost/${post.post_id}">Edit</a>
                             </div>
                             </div>
                             <br>
@@ -93,6 +93,19 @@
 
                                 <c:if test="${post.post_id == comment.post_id}">
                                 <div class="card card-body text-dark">
+                                    <c:if test="${cur_user == comment.user_id}">
+                                        <div class="row justify-content-end border-info rounded">
+                                            <div class="col-10"></div>
+                                            <div class="col">
+                                                <a id="btnD${comment.comment_id}" class="btn btn-info btn-sm" href="/posts/deleteComm/${comment.comment_id}">Delete</a>
+                                            </div>
+
+                                            <div class="col">
+                                                <a id="btnE${comment.comment_id}" class="btn btn-info btn-sm" href="/posts/${post.post_id}">Edit</a>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </c:if>
                                     <div class="col-2">
                                             ${comment.user_id}
                                     </div>
@@ -113,38 +126,12 @@
                     <br>
                     <div class="row justify-content-sm-center">
                         <div class="col">
-                            <a class="btn btn-outline-info btn-sm btn-block" href="/posts/${post.post_id}" style="border-width: 1px; border-color: #008080;">Add comment</a>
+                            <a class="btn btn-outline-info btn-sm btn-block" href="/posts/${post.post_id}">Add comment</a>
                         </div>
                     </div>
                     <br>
 
                 </div>
-
-                <%--<div class="row justify-content-sm-center">
-                    <div class="col">
-
-                        <c:forEach var="comment" items="${comments}">
-
-                            <c:if test="${post.post_id == comment.post_id}">
-                                <div class="col-2">
-                                        ${comment.user_id}
-                                </div>
-                                <div class="col">
-                                    <div class="row-centered"><span class="comment-text"> ${comment.comment_text} </span></div>
-                                </div>
-                            </c:if>
-
-                        </c:forEach>
-
-                    </div>
-
-                </div>--%>
-
-                <%--<div class="row justify-content-sm-center">
-                    <div class="col">
-                        <a class="btn btn-outline-info btn-sm btn-block" href="" style="border-width: 1px; border-color: #008080;">Add comment</a>
-                    </div>
-                </div>--%>
 
             </div>
         </div>
@@ -153,3 +140,4 @@
     </c:forEach>
 
 </t:wrapper>
+

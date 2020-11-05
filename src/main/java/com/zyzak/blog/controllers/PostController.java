@@ -8,12 +8,10 @@ import com.zyzak.blog.models.Comment;
 import com.zyzak.blog.models.Post;
 import com.zyzak.blog.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
 
 @Controller
 @RequestMapping("/posts")
@@ -49,6 +47,7 @@ public class PostController {
     public String show(@PathVariable("id") int id, Model model){
         model.addAttribute("post",postDAO.getById(id));
         model.addAttribute("comments",commentDAO.comments());
+        model.addAttribute("cur_user",User.user_id_s);
         return "posts/post";
     }
 
@@ -70,8 +69,6 @@ public class PostController {
     public String addPost(@ModelAttribute("post") Post post){
         postDAO.add(post);
         Post p = postDAO.getPostLastId();
-        /*System.out.println(p.getPost_id());
-        System.out.println(User.user_id_s);*/
         user_postDAO.add(User.user_id_s,p.getPost_id());
         return("redirect:/posts");
     }
@@ -92,6 +89,20 @@ public class PostController {
     public String updatePost(@ModelAttribute("post") Post post){
         postDAO.update(post);
         return("redirect:/posts");
+    }
+
+    @GetMapping("/deleteComm/{id}")
+    public String deleteComm(@PathVariable("id") int id){
+        commentDAO.deleteComm(id);
+        return("redirect:/posts");
+    }
+
+
+    @PostMapping("/updateComm/{id}")
+    public String updateComm(@PathVariable("id")int id,
+                          @ModelAttribute("comment") Comment comment){
+        commentDAO.updateComm(comment);
+        return("redirect:/posts/"+id);
     }
 
 }

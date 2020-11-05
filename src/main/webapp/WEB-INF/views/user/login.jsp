@@ -10,13 +10,6 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:wrapper>
 
-    <%--<form name="post" action="/posts/addPost" method="post">
-        <p>Title_post </p>
-        <input title="Title_post" type="text" name="title_post">
-        <p>Post_text</p>
-        <textarea title="Post_text" name="post_text" cols="40" rows="10"></textarea>
-        <input type="submit" value="Ok">
-    </form>--%>
 
     <form class="form-signin" name="user" action="/" method="post">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>

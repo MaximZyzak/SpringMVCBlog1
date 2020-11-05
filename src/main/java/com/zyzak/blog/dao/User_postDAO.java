@@ -31,8 +31,6 @@ public class User_postDAO {
 
     public void add(int user_id, int post_id){
         String sql = "INSERT INTO BLOGUSERMVC.\"User_post\" (user_id,post_id) VALUES(?,?)";
-        /*System.out.println(user_id);
-        System.out.println(post_id);*/
         jdbcTemplate.update(sql, user_id, post_id);
     }
 }
