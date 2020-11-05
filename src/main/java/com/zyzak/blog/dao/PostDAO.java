@@ -42,4 +42,9 @@ public class PostDAO {
         String sql = "DELETE FROM BLOGUSER.\"Posts\" WHERE post_id = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    public Post getPostLastId(){
+        String sql = "SELECT * FROM BLOGUSER.\"Posts\" WHERE post_id = (SELECT MAX(post_id) FROM BLOGUSER.\"Posts\")";
+        return jdbcTemplate.queryForObject(sql, new PostMapper());
+    }
 }

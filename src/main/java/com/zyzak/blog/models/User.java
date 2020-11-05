@@ -2,6 +2,10 @@ package com.zyzak.blog.models;
 
 public class User {
 
+    public static int user_id_s = 0;
+    public static String nick_name_s = "";
+    public static String password_S = "";
+
     private int user_id;
     private String nick_name;
     private String email;

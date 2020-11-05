@@ -5,14 +5,19 @@ import com.zyzak.blog.dao.PostDAO;
 import com.zyzak.blog.dao.UserDAO;
 import com.zyzak.blog.dao.User_postDAO;
 import com.zyzak.blog.models.Post;
+import com.zyzak.blog.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
+
 @Controller
 @RequestMapping("/posts")
 public class PostController {
+
     private final PostDAO postDAO;
 
     private final UserDAO userDAO;
@@ -53,6 +58,10 @@ public class PostController {
     @PostMapping("/addPost")
     public String addPost(@ModelAttribute("post") Post post){
         postDAO.add(post);
+        Post p = postDAO.getPostLastId();
+        /*System.out.println(p.getPost_id());
+        System.out.println(User.user_id_s);*/
+        user_postDAO.add(User.user_id_s,p.getPost_id());
         return("redirect:/posts");
     }
 
@@ -73,7 +82,5 @@ public class PostController {
         postDAO.update(post);
         return("redirect:/posts");
     }
-
-
 
 }

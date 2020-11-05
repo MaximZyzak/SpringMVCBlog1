@@ -29,4 +29,9 @@ public class UserDAO {
         String sql = "SELECT * FROM BLOGUSER.\"Users\" WHERE user_id = ?";
         return jdbcTemplate.queryForObject(sql, new UserMapper(), id);
     }
+
+    public User login(User user){
+        String sql = "SELECT * FROM BLOGUSER.\"Users\" WHERE nick_name = ? and password = ?";
+        return jdbcTemplate.queryForObject(sql, new UserMapper(), user.getNick_name(), user.getPassword());
+    }
 }

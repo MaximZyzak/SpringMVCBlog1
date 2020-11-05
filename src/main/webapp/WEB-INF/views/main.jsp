@@ -1,9 +1,11 @@
-<html>
-<body>
-<h1>Spring MVC Hello World Example</h1>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<h2>Main!</h2>
 
-<a href="/posts">Posts</a>
-</body>
-</html>
+
+<t:wrapper>
+    <h1>Spring MVC Hello World Example</h1>
+
+    <h2>Main!</h2>
+
+    <a href="/posts">Posts</a>
+</t:wrapper>

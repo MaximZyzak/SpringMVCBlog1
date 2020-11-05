@@ -1,6 +1,7 @@
 package com.zyzak.blog.dao;
 
 import com.zyzak.blog.mapper.User_postMapper;
+import com.zyzak.blog.models.Post;
 import com.zyzak.blog.models.Userpost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,5 +27,10 @@ public class User_postDAO {
     public Userpost getById(int id){
         String sql = "SELECT * FROM BLOGUSER.\"User_post\" WHERE user_post_id = ?";
         return jdbcTemplate.queryForObject(sql, new User_postMapper(), id);
+    }
+
+    public void add(int user_id, int post_id){
+        String sql = "INSERT INTO BLOGUSER.\"User_post\" (user_id,post_id) VALUES(?,?)";
+        jdbcTemplate.update(sql, user_id, post_id);
     }
 }
