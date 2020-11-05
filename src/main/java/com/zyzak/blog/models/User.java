@@ -2,6 +2,7 @@ package com.zyzak.blog.models;
 
 public class User {
 
+    //данные для кривого логирование
     public static int user_id_s = 0;
     public static String nick_name_s = "";
     public static String password_S = "";
