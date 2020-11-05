@@ -4,6 +4,7 @@ import com.zyzak.blog.dao.CommentDAO;
 import com.zyzak.blog.dao.PostDAO;
 import com.zyzak.blog.dao.UserDAO;
 import com.zyzak.blog.dao.User_postDAO;
+import com.zyzak.blog.models.Comment;
 import com.zyzak.blog.models.Post;
 import com.zyzak.blog.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class PostController {
         model.addAttribute("comments",commentDAO.comments());
         model.addAttribute("user_post",user_postDAO.user_post());
         model.addAttribute("users",userDAO.users());
+        model.addAttribute("cur_user",User.user_id_s);
         return "posts/allPost";
     }
 
@@ -48,6 +50,15 @@ public class PostController {
         model.addAttribute("post",postDAO.getById(id));
         model.addAttribute("comments",commentDAO.comments());
         return "posts/post";
+    }
+
+    @PostMapping("/{id}")
+    public String addComment(@PathVariable("id") int id,
+                             @ModelAttribute("comment") Comment comm){
+        System.out.println(comm.getComment_text());
+        System.out.println(User.user_id_s);
+        commentDAO.addComm(comm, User.user_id_s);
+        return("redirect:/posts/"+id);
     }
 
     @GetMapping("/addPost")

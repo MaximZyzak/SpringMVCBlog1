@@ -20,17 +20,19 @@ public class User_postDAO {
     }
 
     public List<Userpost> user_post(){
-        String sql = "SELECT * FROM BLOGUSER.\"User_post\"";
+        String sql = "SELECT * FROM BLOGUSERMVC.\"User_post\"";
         return jdbcTemplate.query(sql, new User_postMapper());
     }
 
     public Userpost getById(int id){
-        String sql = "SELECT * FROM BLOGUSER.\"User_post\" WHERE user_post_id = ?";
+        String sql = "SELECT * FROM BLOGUSERMVC.\"User_post\" WHERE user_post_id = ?";
         return jdbcTemplate.queryForObject(sql, new User_postMapper(), id);
     }
 
     public void add(int user_id, int post_id){
-        String sql = "INSERT INTO BLOGUSER.\"User_post\" (user_id,post_id) VALUES(?,?)";
+        String sql = "INSERT INTO BLOGUSERMVC.\"User_post\" (user_id,post_id) VALUES(?,?)";
+        /*System.out.println(user_id);
+        System.out.println(post_id);*/
         jdbcTemplate.update(sql, user_id, post_id);
     }
 }

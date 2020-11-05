@@ -43,4 +43,19 @@ public class UserController {
 
         return("redirect:main");
     }*/
+
+    @PostMapping("/login")
+    public String loginUserM(@ModelAttribute("user") User user){
+        User u = userDAO.login(user);
+        if (u!=null){
+            System.out.println(u.getNick_name());
+            System.out.println(u.getPassword());
+            System.out.println(u.getUser_id());
+
+            User.nick_name_s = u.getNick_name();
+            User.password_S = u.getPassword();
+            User.user_id_s = u.getUser_id();
+        }
+        return("redirect:/");
+    }
 }

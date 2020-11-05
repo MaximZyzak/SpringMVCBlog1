@@ -21,17 +21,17 @@ public class UserDAO {
     }
 
     public List<User> users(){
-        String sql = "SELECT * FROM BLOGUSER.\"Users\"";
+        String sql = "SELECT * FROM BLOGUSERMVC.\"Users\"";
         return jdbcTemplate.query(sql, new UserMapper());
     }
 
     public User getById(int id){
-        String sql = "SELECT * FROM BLOGUSER.\"Users\" WHERE user_id = ?";
+        String sql = "SELECT * FROM BLOGUSERMVC.\"Users\" WHERE user_id = ?";
         return jdbcTemplate.queryForObject(sql, new UserMapper(), id);
     }
 
     public User login(User user){
-        String sql = "SELECT * FROM BLOGUSER.\"Users\" WHERE nick_name = ? and password = ?";
+        String sql = "SELECT * FROM BLOGUSERMVC.\"Users\" WHERE nick_name = ? and password = ?";
         return jdbcTemplate.queryForObject(sql, new UserMapper(), user.getNick_name(), user.getPassword());
     }
 }

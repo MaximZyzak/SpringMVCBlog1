@@ -19,12 +19,21 @@ public class CommentDAO {
     }
 
     public List<Comment> comments(){
-        String sql = "SELECT * FROM BLOGUSER.\"Comments\"";
+        String sql = "SELECT * FROM BLOGUSERMVC.\"Comments\"";
         return jdbcTemplate.query(sql, new CommentMapper());
     }
 
     public Comment getById(int id){
-        String sql = "SELECT * FROM BLOGUSER.\"Comments\" WHERE comment_id = ?";
+        String sql = "SELECT * FROM BLOGUSERMVC.\"Comments\" WHERE comment_id = ?";
         return jdbcTemplate.queryForObject(sql, new CommentMapper(), id);
+    }
+
+    public void addComm(Comment comm, int user_id){
+        String sql = "INSERT INTO BLOGUSERMVC.\"Comments\" (comment_text,user_id,post_id) VALUES(?,?,?)";
+        /*System.out.println("////////////");
+        System.out.println(comm.getComment_text());
+        System.out.println(user_id);
+        System.out.println(comm.getPost_id());*/
+        jdbcTemplate.update(sql,comm.getComment_text(), user_id, comm.getPost_id());
     }
 }
